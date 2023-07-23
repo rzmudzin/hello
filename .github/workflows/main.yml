@@ -18,5 +18,6 @@ jobs:
           echo ${{ github.event.repo.name }}
           echo "PATH: $PATH"
           pwd
-          find . -name script.sh
-          ./script.sh
+          find . -name "*"
+          ls -lah
+          #./script.sh
