@@ -8,6 +8,9 @@ on:
         required: true
         default: 'tst1'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   main_job:
     runs-on: [self-hosted]
