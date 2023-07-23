@@ -16,3 +16,4 @@ jobs:
       - name: echo events
         run: |
           echo ${{ github.event.repo.name }}
+          echo "PATH: $PATH"
