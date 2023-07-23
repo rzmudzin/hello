@@ -1,17 +1,18 @@
 name: Main
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      dsap:
+        description: 'DSAP Environment(tst1,uat2 or tst2)'
+        required: true
+        default: 'tst1'
 
 jobs:
-  hello_world_job:
-    runs-on: ubuntu-latest
-    name: A job to say hello
+  main_job:
+    runs-on: [self-hosted]
+    name: Sample Build Job
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: rzmudzin/hello-world-javascript-action@v1.1
-        with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+      - name: echo events
+        run: |
+          echo ${{ github.event.repo.name }}
