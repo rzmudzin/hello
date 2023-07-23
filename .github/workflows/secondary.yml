@@ -29,5 +29,5 @@ jobs:
           pwd
           #find . -name "*"
           #ls -lah
-          sleep 500
+          sleep 240
           ./script.sh
