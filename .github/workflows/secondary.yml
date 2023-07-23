@@ -1,0 +1,33 @@
+name: Secondary
+
+on:
+  workflow_dispatch:
+    inputs:
+      dsap:
+        description: 'DSAP Environment(tst1,uat2 or tst2)'
+        required: true
+        default: 'tst1'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  main_job:
+    runs-on: [self-hosted]
+    name: Sample Build Job
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          #ref: release
+          submodules: recursive
+      - name: echo events
+        run: |
+          echo ${{ github.workflow }}---${{ github.ref }}
+          echo ${{ github.event.repo.name }}
+          echo "PATH: $PATH"
+          pwd
+          #find . -name "*"
+          #ls -lah
+          sleep 500
+          ./script.sh
